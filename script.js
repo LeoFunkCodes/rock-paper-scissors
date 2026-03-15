@@ -5,4 +5,26 @@ function getComputerChoice() {
     return(choice);
     
 }
-console.log(getComputerChoice());
+
+function getHumanChoice() {
+    let choice = prompt('\"Rock\", \"Paper\" or \"Scissors\"', "Rock")
+    
+        switch(choice) {
+            case "Rock":
+                return(0);
+
+            case "Paper":
+                return(1);
+
+            case "Scissors":
+                return(2);
+            default: 
+                return(getHumanChoice());
+        }
+
+    
+}
+
+let humanscore = 0;
+let computerscore = 0;
+console.log(getHumanChoice());
