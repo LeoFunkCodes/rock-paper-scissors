@@ -65,12 +65,12 @@ function playRound(player, computer) {
 
 function playGame() {
     // while((playerScore < 3) && (computerScore < 3)) {
-        let win = playRound(getPlayerChoice(), getComputerChoice());
-        if(win == 1) {
-            playerScore++;
-        } else if(win == -1) {
-            computerScore++;
-        }
+    //    let win = playRound(getPlayerChoice(), getComputerChoice());
+    //    if(win == 1) {
+    //        playerScore++;
+    //    } else if(win == -1) {
+    //        computerScore++;
+    //    }
     // }
 
     if(playerScore > computerScore) {
@@ -87,7 +87,8 @@ let computerScore = 0;
 
 const buttons = document.querySelector("#buttons");
 buttons.addEventListener("click", (event) => {
-    // do something
+    const button = event.target;
+    playRound(button.innerText, getComputerChoice())
 })
 
 
