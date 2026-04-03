@@ -39,30 +39,42 @@ function getComputerChoice() {
     }
 }
 
+function updateScoreboard() {
+    playerScoreDisplay.innerText = `Your score: ${playerScore}`;
+    computerScoreDisplay.innerText = `Computer score: ${computerScore}`;
+}
+
 function playRound(player, computer) {
     console.log(`You picked ${player}, Computer picked ${computer}`)
 
     let win = whoWins(player, computer); 
     if(win == 1) {
         playerScore++;
+        updateScoreboard();
     } else if(win == -1) {
         computerScore++;
+        updateScoreboard();
     }
-    console.log(`player: ${playerScore}, computer: ${computerScore}, win: ${win}`)
 
     if(playerScore > 2 || computerScore > 2) {
         if(playerScore > 2) {
-            console.log("You win!!!");
+            winDisplay.innerText = "You win!!!";
         } else {
-            console.log("Computer wins...");
+            winDisplay.innerText = "Computer wins...";
         }
+        playerScore = 0;
+        computerScore = 0;
     }
 }
 
 let playerScore = 0;
 let computerScore = 0;
-
+const winDisplay = document.querySelector("#winner");
 const buttons = document.querySelector("#buttons");
+const playerScoreDisplay = document.querySelector("#playerscore");
+const computerScoreDisplay = document.querySelector("#computerscore");
+const recentRound = document.querySelector("#recentround");
+
 buttons.addEventListener("click", (event) => {
     const button = event.target;
     playRound(button.innerText, getComputerChoice())
