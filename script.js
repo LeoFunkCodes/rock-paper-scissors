@@ -65,11 +65,6 @@ function playRound() {
     return(whoWins(playerChoice, computerChoice));
 }
 
-function updateScore() {
-    playerScoreDisplay.innerText = playerScore;
-    computerScoreDisplay.innerText = computerScore;
-}
-
 function playGame() {
     // while((playerScore < 3) && (computerScore < 3)) {
         let win = playRound();
@@ -78,7 +73,6 @@ function playGame() {
         } else if(win == -1) {
             computerScore++;
         }
-        updateScore();
     // }
 
     if(playerScore > computerScore) {
@@ -90,8 +84,5 @@ function playGame() {
 
 let playerScore = 0;
 let computerScore = 0;
-
-let playerScoreDisplay = document.getElementById("playerScore");
-let computerScoreDisplay = document.getElementById("computerScore");
 
 playGame();
