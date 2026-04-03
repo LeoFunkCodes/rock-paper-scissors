@@ -82,7 +82,15 @@ function playGame() {
     }
 }
 
+
+
 let playerScore = 0;
 let computerScore = 0;
+
+const buttons = document.querySelector("#buttons");
+buttons.addEventListener("click", (event) => {
+    // do something
+})
+
 
 playGame();
