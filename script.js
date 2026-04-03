@@ -1,17 +1,3 @@
-function getComputerChoice() {
-    let choice = Math.floor(Math.random() * 3);
-    switch(choice) {
-        case 0: 
-            return("rock");
-        case 1: 
-            return("paper");
-        case 2: 
-            return("scissors");
-        default:
-            return `Error, computer choice is ${choice}`;
-    }
-}
-
 function whoWins(player, computer) {
     if(player == computer) {
         return(0);
@@ -36,6 +22,20 @@ function whoWins(player, computer) {
             } else {
                 return(1);
             }
+    }
+}
+
+function getComputerChoice() {
+    let choice = Math.floor(Math.random() * 3);
+    switch(choice) {
+        case 0: 
+            return("rock");
+        case 1: 
+            return("paper");
+        case 2: 
+            return("scissors");
+        default:
+            return `Error, computer choice is ${choice}`;
     }
 }
 
