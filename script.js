@@ -1,98 +1,97 @@
 function getComputerChoice() {
     let choice = Math.floor(Math.random() * 3);
-    return(choice);
-    
-}
-
-function numToPlay(num) {
-    if(num === 0) {
-        return("Rock");
-    } else if(num === 1) {
-        return("Paper");
-    } else {
-        return("Scissors");
+    switch(choice) {
+        case 0: 
+            return("rock");
+        case 1: 
+            return("paper");
+        case 2: 
+            return("scissors");
+        default:
+            return `Error, computer choice is ${choice}`;
     }
 }
 
-function getHumanChoice() {
+function whoWins(player, computer) {
+    if(player == computer) {
+        return(0);
+    }
+    
+    switch(player) {
+        case "rock":
+            if(computer == "paper") {
+                return(-1);
+            } else {
+                return(1);
+            }
+        case "paper":
+            if(computer == "scissors") {
+                return(-1);
+            } else {
+                return(1);
+            }
+        case "scissors":
+            if(computer == "rock") {
+                return(-1);
+            } else {
+                return(1);
+            }
+    }
+}
+
+function getPlayerChoice() {
     let choice = prompt('\"Rock\", \"Paper\" or \"Scissors\"', "Rock")
     
         switch(choice.toLowerCase()) {
             case "rock":
-                return(0);
+                return("rock");
 
             case "paper":
-                return(1);
+                return("paper");
 
             case "scissors":
-                return(2);
+                return("scissors");
             default: 
-                return(getHumanChoice());
+                return(getPlayerChoice());
         }
 
     
 }
 
 function playRound() {
-    let human = getHumanChoice();
-    let computer = getComputerChoice();
-    console.log(`You picked ${numToPlay(human)}, Computer picked ${numToPlay(computer)}`)
-    switch(human) {
-        case 0:
-            if(computer == 1) {
-                return(0);
-            } else if(computer == 2) {
-                return(1);
-            } else {
-                return(null);
-            }
-            break;
-
-        case 1:
-            if(computer == 2) {
-                return(0);
-            } else if(computer == 0) {
-                return(1);
-            } else {
-                return(null);
-            }
-            break;
-        
-        case 2:
-            if(computer == 0) {
-                return(0);
-            } else if(computer == 1) {
-                return(1);
-            } else {
-                return(null);
-            }
-            break;
-    }
+    let playerChoice = getPlayerChoice();
+    let computerChoice = getComputerChoice();
+    console.log(`You picked ${playerChoice}, Computer picked ${computerChoice}`)
+    return(whoWins(playerChoice, computerChoice));
 }
 
 function updateScore() {
-    humanScoreDisplay.innerText = humanScore;
+    playerScoreDisplay.innerText = playerScore;
     computerScoreDisplay.innerText = computerScore;
 }
 
-let humanScore = 0;
+function playGame() {
+    while((playerScore < 3) && (computerScore < 3)) {
+        let win = playRound();
+        if(win == 1) {
+            playerScore++;
+        } else if(win == -1) {
+            computerScore++;
+        }
+        updateScore();
+    }
+
+    if(playerScore == 3) {
+        console.log("You win!!!");
+    } else {
+        console.log("Computer wins...");
+    }
+}
+
+let playerScore = 0;
 let computerScore = 0;
 
-let humanScoreDisplay = document.getElementById("playerScore");
+let playerScoreDisplay = document.getElementById("playerScore");
 let computerScoreDisplay = document.getElementById("computerScore");
 
-while((humanScore < 3) && (computerScore < 3)) {
-    let round = playRound();
-    if(round == 1) {
-        humanScore++;
-    } else {
-        computerScore++;
-    }
-    updateScore();
-}
-
-if(humanScore == 3) {
-    console.log("You win!!!");
-} else {
-    console.log("Computer wins...");
-}
+playGame();
