@@ -58,16 +58,14 @@ function getPlayerChoice() {
     
 }
 
-function playRound() {
-    let playerChoice = getPlayerChoice();
-    let computerChoice = getComputerChoice();
-    console.log(`You picked ${playerChoice}, Computer picked ${computerChoice}`)
-    return(whoWins(playerChoice, computerChoice));
+function playRound(player, computer) {
+    console.log(`You picked ${player}, Computer picked ${computer}`)
+    return(whoWins(player, computer));
 }
 
 function playGame() {
     // while((playerScore < 3) && (computerScore < 3)) {
-        let win = playRound();
+        let win = playRound(getPlayerChoice(), getComputerChoice());
         if(win == 1) {
             playerScore++;
         } else if(win == -1) {
