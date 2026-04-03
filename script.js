@@ -71,7 +71,7 @@ function updateScore() {
 }
 
 function playGame() {
-    while((playerScore < 3) && (computerScore < 3)) {
+    // while((playerScore < 3) && (computerScore < 3)) {
         let win = playRound();
         if(win == 1) {
             playerScore++;
@@ -79,9 +79,9 @@ function playGame() {
             computerScore++;
         }
         updateScore();
-    }
+    // }
 
-    if(playerScore == 3) {
+    if(playerScore > computerScore) {
         console.log("You win!!!");
     } else {
         console.log("Computer wins...");
