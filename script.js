@@ -4,20 +4,20 @@ function whoWins(player, computer) {
     }
     
     switch(player) {
-        case "rock":
-            if(computer == "paper") {
+        case "Rock":
+            if(computer == "Paper") {
                 return(-1);
             } else {
                 return(1);
             }
-        case "paper":
-            if(computer == "scissors") {
+        case "Paper":
+            if(computer == "Scissors") {
                 return(-1);
             } else {
                 return(1);
             }
-        case "scissors":
-            if(computer == "rock") {
+        case "Scissors":
+            if(computer == "Rock") {
                 return(-1);
             } else {
                 return(1);
@@ -29,58 +29,35 @@ function getComputerChoice() {
     let choice = Math.floor(Math.random() * 3);
     switch(choice) {
         case 0: 
-            return("rock");
+            return("Rock");
         case 1: 
-            return("paper");
+            return("Paper");
         case 2: 
-            return("scissors");
+            return("Scissors");
         default:
             return `Error, computer choice is ${choice}`;
     }
 }
 
-function getPlayerChoice() {
-    let choice = prompt('\"Rock\", \"Paper\" or \"Scissors\"', "Rock")
-    
-        switch(choice.toLowerCase()) {
-            case "rock":
-                return("rock");
-
-            case "paper":
-                return("paper");
-
-            case "scissors":
-                return("scissors");
-            default: 
-                return(getPlayerChoice());
-        }
-
-    
-}
-
 function playRound(player, computer) {
     console.log(`You picked ${player}, Computer picked ${computer}`)
-    return(whoWins(player, computer));
-}
 
-function playGame() {
-    // while((playerScore < 3) && (computerScore < 3)) {
-    //    let win = playRound(getPlayerChoice(), getComputerChoice());
-    //    if(win == 1) {
-    //        playerScore++;
-    //    } else if(win == -1) {
-    //        computerScore++;
-    //    }
-    // }
+    let win = whoWins(player, computer); 
+    if(win == 1) {
+        playerScore++;
+    } else if(win == -1) {
+        computerScore++;
+    }
+    console.log(`player: ${playerScore}, computer: ${computerScore}, win: ${win}`)
 
-    if(playerScore > computerScore) {
-        console.log("You win!!!");
-    } else {
-        console.log("Computer wins...");
+    if(playerScore > 2 || computerScore > 2) {
+        if(playerScore > 2) {
+            console.log("You win!!!");
+        } else {
+            console.log("Computer wins...");
+        }
     }
 }
-
-
 
 let playerScore = 0;
 let computerScore = 0;
@@ -90,6 +67,3 @@ buttons.addEventListener("click", (event) => {
     const button = event.target;
     playRound(button.innerText, getComputerChoice())
 })
-
-
-playGame();
